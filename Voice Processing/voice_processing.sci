@@ -2,7 +2,6 @@ function normalized = normalize(x)
     normalix = max ( abs(min(x)), abs(max(x)) );
     normalized = x/normalix;
 endfunction
-
 function filtered = oblivion_filter(signal, alfa)
     y = zeros(1,length(signal));
     y(1) = signal(1);
@@ -56,6 +55,7 @@ wavwrite(normalized, fs, 'alfa-05.wav');
 
 
 //Fitro de média móvel
+/*
 avarage_filtered = mean_avarage(mono_voice, 50);
 normalized = normalize(avarage_filtered);
 wavwrite(normalized, fs, 'window50.wav');
@@ -67,4 +67,17 @@ wavwrite(normalized, fs, 'window100.wav');
 avarage_filtered = mean_avarage(mono_voice, 1000);
 normalized = normalize(avarage_filtered);
 wavwrite(normalized, fs, 'window1000.wav');
+*/
 
+//Correlação
+sliced = mono_voice(2*fs:3*fs);
+correlation = xcorr(mono_voice);
+
+n = length(correlation);
+lag = -(n-1)/2 : (n-1)/2;
+
+
+plot(lag, correlation);
+xlabel('Lag');
+ylabel('Cross-Correlation');
+title('Cross-Correlation between signal1 and signal2');
