@@ -84,12 +84,11 @@ wavwrite(normalized, fs, 'window100.wav');
 
 avarage_filtered = mean_avarage(mono_voice, 1000);
 normalized = normalize(avarage_filtered);
-wavwrite(normalized, fs, 'window1000.wav');
-*/
+wavwrite(normalized, fs, 'window1000.wav');*/
 
 //Correlação
 sliced = mono_voice(2*fs:3*fs);
-correlation = xcorr(mono_voice);
+correlation = xcorr(mono_voice,sliced);
 
 n = length(correlation);
 lag = -(n-1)/2 : (n-1)/2;
