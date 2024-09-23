@@ -105,9 +105,9 @@ double_tax_signal = tax_double(mono_voice);
 normalized = normalize(double_tax_signal);
 wavwrite(normalized, 2*fs, 'double_tax.wav');
 
-half_tax_signal = filter_odd(mono_voice);
+half_tax_signal = mono_voice(1:2:length(mono_voice));
 normalized = normalize(half_tax_signal);
-wavwrite(normalized, fs, 'half_tax.wav');
+wavwrite(normalized, fs/2, 'half_tax.wav');
 
 
 
